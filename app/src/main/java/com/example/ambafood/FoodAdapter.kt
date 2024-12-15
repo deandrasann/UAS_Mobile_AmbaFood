@@ -4,9 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ambafood.databinding.ItemFoodBinding
+import com.example.ambafood.model.Cart
 import com.example.ambafood.model.Foods
 
-class FoodAdapter(private val foodList: List<Foods>) : RecyclerView.Adapter<FoodAdapter.FoodViewHolder>() {
+class FoodAdapter(
+    private val foodList: List<Foods>,
+    private val onCartClick: (Cart) -> Unit
+) : RecyclerView.Adapter<FoodAdapter.FoodViewHolder>() {
 
     class FoodViewHolder(val binding: ItemFoodBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -20,6 +24,17 @@ class FoodAdapter(private val foodList: List<Foods>) : RecyclerView.Adapter<Food
         holder.binding.foodName.text = food.name
         holder.binding.foodDescription.text = food.description
         holder.binding.foodPrice.text = food.price.toString()
+
+        holder.binding.btnAddToCart.setOnClickListener{
+            val cart = Cart(
+                id = food.id,
+                name = food.name,
+                price = food.price,
+                description = food.description,
+                sold = food.sold
+            )
+            onCartClick(cart)
+        }
     }
 
     override fun getItemCount(): Int {

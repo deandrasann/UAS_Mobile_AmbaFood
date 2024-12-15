@@ -1,11 +1,14 @@
 package com.example.ambafood.model
 
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-data class Foods(
+@Entity(tableName = "cart_table")
+data class Cart(
+    @PrimaryKey
     @SerializedName("id")
-    val id:Int,
+    val id: Int,
     @SerializedName("name")
     val name: String,
     @SerializedName("description")
