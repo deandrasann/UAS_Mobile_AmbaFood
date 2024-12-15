@@ -12,8 +12,8 @@ import com.example.ambafood.databinding.ActivityAdminBinding
 class AdminActivity : AppCompatActivity() {
     private lateinit var binding: ActivityAdminBinding
     private lateinit var prefManager: PrefManager
-    private var usernameAccount = "Rusdi"
-    private var password ="16"
+    private var usernameAccount = "admin"
+    private var password ="admin123"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAdminBinding.inflate(layoutInflater)

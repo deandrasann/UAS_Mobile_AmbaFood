@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.example.ambafood.CartDao
 import com.example.ambafood.model.Cart
 
-@Database(entities = [Cart::class], version = 1, exportSchema = false)
+@Database(entities = [Cart::class], version = 2, exportSchema = false)
 abstract class CartDatabase : RoomDatabase() {
 
     abstract fun cartDao(): CartDao
@@ -22,7 +22,9 @@ abstract class CartDatabase : RoomDatabase() {
                     context.applicationContext,
                     CartDatabase::class.java,
                     "cart_database"
-                ).build()
+                )
+                    .fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
                 instance
             }

@@ -12,8 +12,8 @@ import com.example.ambafood.databinding.ActivityLoginBinding
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var prefManager: PrefManager
-    private var usernameAccount = "Rusdi"
-    private var noMeja ="16"
+    private var usernameAccount = "pelanggan"
+    private var noMeja ="12"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)

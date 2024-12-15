@@ -73,6 +73,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun addToCart(cartItem: Cart) {
         lifecycleScope.launch {
+            cartItem.id = 0
             cartDatabase.cartDao().insert(cartItem)
             Toast.makeText(this@MainActivity, "Added to Cart", Toast.LENGTH_SHORT).show()
         }

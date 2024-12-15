@@ -36,9 +36,6 @@ class RoleActivity : AppCompatActivity() {
                     val intent = Intent(this, LoginActivity::class.java)
                     startActivity(intent)
                 }
-                else -> {
-                    Toast.makeText(this, "Pilih role yang valid", Toast.LENGTH_SHORT).show()
-                }
             }
         }
     }

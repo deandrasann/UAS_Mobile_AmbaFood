@@ -4,11 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ambafood.database.CartDatabase
 import com.example.ambafood.databinding.ActivityCartBinding
 import com.example.ambafood.model.Cart
 import com.example.ambafood.network.FoodAdapter
+import kotlinx.coroutines.launch
 
 class CartActivity : AppCompatActivity() {
 
@@ -38,9 +40,18 @@ class CartActivity : AppCompatActivity() {
 
     private fun loadCartItems() {
         cartDatabase.cartDao().getOrder().observe(this, Observer { carts ->
-            cartAdapter = CartAdapter(carts)
+            cartAdapter = CartAdapter(carts) { cart ->
+                deleteCartItem(cart)
+            }
             binding.rvCart.adapter = cartAdapter 
         })
     }
+    private fun deleteCartItem(cart: Cart) {
+        lifecycleScope.launch {
+            cartDatabase.cartDao().delete(cart)
+        }
+    }
+
+
 
 }

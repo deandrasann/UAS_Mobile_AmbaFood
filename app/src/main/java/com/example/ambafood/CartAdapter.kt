@@ -30,15 +30,17 @@ package com.example.ambafood
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ambafood.model.Cart
 
-class CartAdapter(private val cartItems: List<Cart>) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
+class CartAdapter(private val cartItems: List<Cart>, private val deleteListener: (Cart) -> Unit) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
     inner class CartViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val itemName: TextView = itemView.findViewById(R.id.itemName)
         val itemPrice: TextView = itemView.findViewById(R.id.itemPrice)
+        val btnDelete: ImageButton = itemView.findViewById(R.id.btn_delete)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
@@ -50,6 +52,10 @@ class CartAdapter(private val cartItems: List<Cart>) : RecyclerView.Adapter<Cart
         val cartItem = cartItems[position]
         holder.itemName.text = cartItem.name
         holder.itemPrice.text = cartItem.price.toString()
+
+        holder.btnDelete.setOnClickListener {
+            deleteListener(cartItem)
+        }
     }
 
     override fun getItemCount(): Int {

@@ -19,4 +19,7 @@ interface CartDao {
 
     @Query("SELECT * FROM cart_table ORDER BY id ASC")
     fun getOrder(): LiveData<List<Cart>>
+
+    @Query("UPDATE cart_table SET sold = sold + 1")
+    suspend fun addOneSoldEachOrder()
 }
